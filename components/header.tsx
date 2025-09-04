@@ -4,10 +4,12 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
+import { useI18n } from "@/components/i18n-provider"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { t, locale, setLocale } = useI18n()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,23 +36,36 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#home" className="text-foreground hover:text-primary transition-colors">
-              Home
+              {t("nav.home")}
             </a>
             <a href="#about" className="text-foreground hover:text-primary transition-colors">
-              About
+              {t("nav.about")}
             </a>
             <a href="#products" className="text-foreground hover:text-primary transition-colors">
-              Products
+              {t("nav.products")}
             </a>
             <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-              Contact
+              {t("nav.contact")}
             </a>
           </nav>
 
           {/* CTA Button */}
-          <Button className="hidden md:inline-flex bg-primary hover:bg-secondary text-primary-foreground transition-all duration-300 hover:scale-105">
-            Shop Now
-          </Button>
+          <div className="hidden md:flex items-center gap-3">
+            <Button className="bg-primary hover:bg-secondary text-primary-foreground transition-all duration-300 hover:scale-105">
+              {t("cta.shopNow")}
+            </Button>
+            {/* Language Switcher */}
+            <select
+              aria-label="Language selector"
+              value={locale}
+              onChange={(e) => setLocale(e.target.value as any)}
+              className="px-2 py-2 rounded-md border border-border bg-background text-foreground text-sm"
+            >
+              <option value="en">EN</option>
+              <option value="fr">FR</option>
+              <option value="ar">AR</option>
+            </select>
+          </div>
 
           {/* Mobile Menu Button */}
           <button className="md:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
@@ -63,18 +78,30 @@ export function Header() {
           <div className="md:hidden mt-4 py-4 border-t border-border">
             <nav className="flex flex-col space-y-4">
               <a href="#home" className="text-foreground hover:text-primary transition-colors">
-                Home
+                {t("nav.home")}
               </a>
               <a href="#about" className="text-foreground hover:text-primary transition-colors">
-                About
+                {t("nav.about")}
               </a>
               <a href="#products" className="text-foreground hover:text-primary transition-colors">
-                Products
+                {t("nav.products")}
               </a>
               <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-                Contact
+                {t("nav.contact")}
               </a>
-              <Button className="w-full bg-primary hover:bg-secondary text-primary-foreground">Shop Now</Button>
+              <Button className="w-full bg-primary hover:bg-secondary text-primary-foreground">{t("cta.shopNow")}</Button>
+              <div className="pt-2">
+                <select
+                  aria-label="Language selector"
+                  value={locale}
+                  onChange={(e) => setLocale(e.target.value as any)}
+                  className="w-full px-2 py-2 rounded-md border border-border bg-background text-foreground text-sm"
+                >
+                  <option value="en">English</option>
+                  <option value="fr">Français</option>
+                  <option value="ar">العربية</option>
+                </select>
+              </div>
             </nav>
           </div>
         )}

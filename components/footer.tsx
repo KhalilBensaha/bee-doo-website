@@ -1,7 +1,11 @@
+"use client"
+
 import { Heart } from "lucide-react"
 import Image from "next/image"
+import { useI18n } from "@/components/i18n-provider"
 
 export function Footer() {
+  const { t } = useI18n()
   return (
     <footer className="bg-foreground text-background py-12">
       <div className="container mx-auto px-4 py-4">
@@ -18,33 +22,31 @@ export function Footer() {
               />
               <span className="text-xl font-bold">Bee Doo</span>
             </div>
-            <p className="text-background/80 text-sm text-pretty">
-              Premium natural honey crafted with care and dedication to quality.
-            </p>
+    <p className="text-background/80 text-sm text-pretty">{t("footer.brandDescription")}</p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
+    <h3 className="font-semibold mb-4">{t("footer.quickLinks")}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#home" className="text-background/80 hover:text-background transition-colors">
-                  Home
+      {t("nav.home")}
                 </a>
               </li>
               <li>
                 <a href="#about" className="text-background/80 hover:text-background transition-colors">
-                  About Us
+      {t("nav.about")}
                 </a>
               </li>
               <li>
                 <a href="#products" className="text-background/80 hover:text-background transition-colors">
-                  Products
+      {t("nav.products")}
                 </a>
               </li>
               <li>
                 <a href="#contact" className="text-background/80 hover:text-background transition-colors">
-                  Contact
+      {t("nav.contact")}
                 </a>
               </li>
             </ul>
@@ -52,26 +54,26 @@ export function Footer() {
 
           {/* Products */}
           <div>
-            <h3 className="font-semibold mb-4">Our Honey</h3>
+    <h3 className="font-semibold mb-4">{t("footer.ourHoney")}</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Natural Antibiotic
+      {t("products.names.antibiotic")}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Wildflower
+      {t("products.names.wildflower")}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Acacia
+      {t("products.names.acacia")}
                 </a>
               </li>
               <li>
                 <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Manuka
+      {t("products.names.manuka")}
                 </a>
               </li>
             </ul>
@@ -79,18 +81,16 @@ export function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className="font-semibold mb-4">Stay Updated</h3>
-            <p className="text-background/80 text-sm mb-4 text-pretty">
-              Subscribe to get updates on new products and special offers.
-            </p>
+    <h3 className="font-semibold mb-4">{t("footer.newsletter.stayUpdated")}</h3>
+    <p className="text-background/80 text-sm mb-4 text-pretty">{t("footer.newsletter.description")}</p>
             <div className="flex">
               <input
                 type="email"
-                placeholder="Your email"
+        placeholder={t("footer.newsletter.placeholderEmail")}
                 className="flex-1 px-3 py-2 text-sm bg-background/10 border border-background/20 rounded-l-md focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <button className="px-4 py-2 bg-primary text-primary-foreground text-sm rounded-r-md hover:bg-secondary transition-colors">
-                Subscribe
+        {t("footer.newsletter.subscribe")}
               </button>
             </div>
           </div>
@@ -100,7 +100,7 @@ export function Footer() {
         <div className="border-t border-background/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-background/80 text-sm">© 2024 Bee Doo. All rights reserved.</p>
           <p className="text-background/80 text-sm flex items-center">
-            Made with <Heart className="h-4 w-4 mx-1 text-red-400" /> for honey lovers
+    {t("footer.bottom.madeWithLove")} <Heart className="h-4 w-4 mx-1 text-red-400" /> {t("footer.bottom.forHoneyLovers")}
           </p>
         </div>
       </div>
