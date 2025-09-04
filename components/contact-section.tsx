@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter } from "lucide-react"
+import { useI18n } from "@/components/i18n-provider"
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  const { t } = useI18n()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,56 +40,54 @@ export function ContactSection() {
         >
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Get in Touch</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Have questions about our honey or want to place a custom order? We'd love to hear from you!
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">{t("contact.title")}</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">{t("contact.description")}</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-card-foreground">Send us a Message</CardTitle>
+                <CardTitle className="text-card-foreground">{t("contact.form.title")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-sm font-medium text-card-foreground mb-2 block">First Name</label>
+                    <label className="text-sm font-medium text-card-foreground mb-2 block">{t("contact.form.firstName")}</label>
                     <Input
-                      placeholder="Your first name"
+                      placeholder={t("contact.form.placeholders.firstName")}
                       className="bg-input border-border focus:ring-ring focus:border-ring transition-all duration-300"
                     />
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-card-foreground mb-2 block">Last Name</label>
+                    <label className="text-sm font-medium text-card-foreground mb-2 block">{t("contact.form.lastName")}</label>
                     <Input
-                      placeholder="Your last name"
+                      placeholder={t("contact.form.placeholders.lastName")}
                       className="bg-input border-border focus:ring-ring focus:border-ring transition-all duration-300"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-card-foreground mb-2 block">Email</label>
+                  <label className="text-sm font-medium text-card-foreground mb-2 block">{t("contact.form.email")}</label>
                   <Input
                     type="email"
-                    placeholder="your.email@example.com"
+                    placeholder={t("contact.form.placeholders.email")}
                     className="bg-input border-border focus:ring-ring focus:border-ring transition-all duration-300"
                   />
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-card-foreground mb-2 block">Message</label>
+                  <label className="text-sm font-medium text-card-foreground mb-2 block">{t("contact.form.message")}</label>
                   <Textarea
-                    placeholder="Tell us about your inquiry..."
+                    placeholder={t("contact.form.placeholders.message")}
                     rows={5}
                     className="bg-input border-border focus:ring-ring focus:border-ring transition-all duration-300"
                   />
                 </div>
 
                 <Button className="w-full bg-primary hover:bg-secondary text-primary-foreground transition-all duration-300 hover:scale-105">
-                  Send Message
+                  {t("contact.form.send")}
                 </Button>
               </CardContent>
             </Card>
@@ -101,7 +101,7 @@ export function ContactSection() {
                       <Mail className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-card-foreground">Email Us</h3>
+                      <h3 className="font-semibold text-card-foreground">{t("contact.info.emailUs")}</h3>
                       <p className="text-muted-foreground">hello@beedoo.com</p>
                     </div>
                   </div>
@@ -115,7 +115,7 @@ export function ContactSection() {
                       <Phone className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-card-foreground">Call Us</h3>
+                      <h3 className="font-semibold text-card-foreground">{t("contact.info.callUs")}</h3>
                       <p className="text-muted-foreground">+1 (555) 123-4567</p>
                     </div>
                   </div>
@@ -129,7 +129,7 @@ export function ContactSection() {
                       <MapPin className="h-6 w-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-card-foreground">Visit Us</h3>
+                      <h3 className="font-semibold text-card-foreground">{t("contact.info.visitUs")}</h3>
                       <p className="text-muted-foreground">123 Honey Lane, Sweet Valley, CA 90210</p>
                     </div>
                   </div>
@@ -138,7 +138,7 @@ export function ContactSection() {
 
               {/* Social Media */}
               <div className="text-center">
-                <h3 className="font-semibold text-foreground mb-4">Follow Us</h3>
+                <h3 className="font-semibold text-foreground mb-4">{t("contact.info.followUs")}</h3>
                 <div className="flex justify-center space-x-4">
                   <Button
                     variant="outline"

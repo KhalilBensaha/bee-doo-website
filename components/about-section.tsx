@@ -3,10 +3,12 @@
 import { useEffect, useRef, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Heart, Leaf, Award } from "lucide-react"
+import { useI18n } from "@/components/i18n-provider"
 
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  const { t } = useI18n()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,11 +37,8 @@ export function AboutSection() {
         >
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">Our Story & Mission</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-              At Bee Doo, we believe in the power of nature's sweetest gift. Our journey began with a passion for pure,
-              natural honey and a commitment to sustainable beekeeping practices.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">{t("about.title")}</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">{t("about.description")}</p>
           </div>
 
           {/* Feature Cards */}
@@ -49,11 +48,8 @@ export function AboutSection() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                   <Heart className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-card-foreground mb-3">Made with Love</h3>
-                <p className="text-muted-foreground text-pretty">
-                  Every jar is crafted with care and attention to detail, ensuring the highest quality honey reaches
-                  your table.
-                </p>
+                <h3 className="text-xl font-semibold text-card-foreground mb-3">{t("about.features.madeWithLove.title")}</h3>
+                <p className="text-muted-foreground text-pretty">{t("about.features.madeWithLove.desc")}</p>
               </CardContent>
             </Card>
 
@@ -62,10 +58,8 @@ export function AboutSection() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                   <Leaf className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-card-foreground mb-3">100% Natural</h3>
-                <p className="text-muted-foreground text-pretty">
-                  Our honey is completely natural with no additives, preservatives, or artificial ingredients.
-                </p>
+                <h3 className="text-xl font-semibold text-card-foreground mb-3">{t("about.features.natural.title")}</h3>
+                <p className="text-muted-foreground text-pretty">{t("about.features.natural.desc")}</p>
               </CardContent>
             </Card>
 
@@ -74,22 +68,15 @@ export function AboutSection() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                   <Award className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-card-foreground mb-3">Premium Quality</h3>
-                <p className="text-muted-foreground text-pretty">
-                  Award-winning honey that meets the highest standards of purity and taste excellence.
-                </p>
+                <h3 className="text-xl font-semibold text-card-foreground mb-3">{t("about.features.quality.title")}</h3>
+                <p className="text-muted-foreground text-pretty">{t("about.features.quality.desc")}</p>
               </CardContent>
             </Card>
           </div>
 
           {/* Story Text */}
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-lg text-muted-foreground leading-relaxed text-pretty">
-              Founded by passionate beekeepers, Bee Doo represents generations of expertise in honey production. We work
-              closely with local bee colonies, ensuring sustainable practices that protect both the environment and the
-              precious bees that make our honey possible. Each jar tells a story of dedication, purity, and the natural
-              sweetness that only comes from the finest honey.
-            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed text-pretty">{t("about.storyText")}</p>
           </div>
         </div>
       </div>

@@ -3,9 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useI18n } from "@/components/i18n-provider"
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useI18n()
 
   useEffect(() => {
     setIsVisible(true)
@@ -32,14 +34,13 @@ export function HeroSection() {
         >
           {/* Main Heading */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 text-balance">
-            Pure Natural
-            <span className="block text-primary">Golden Honey</span>
+            {t("hero.titleLine1")}
+            <span className="block text-primary">{t("hero.titleLine2")}</span>
           </h1>
 
           {/* Subtext */}
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty">
-            Discover the finest natural honey, harvested with care and crafted by nature. Experience the pure taste of
-            premium quality honey from Bee Doo.
+            {t("hero.subtext")}
           </p>
 
           {/* CTA Buttons */}
@@ -48,7 +49,7 @@ export function HeroSection() {
               size="lg"
               className="bg-primary hover:bg-secondary text-primary-foreground transition-all duration-300 hover:scale-105 group"
             >
-              Shop Our Honey
+              {t("cta.shopOurHoney")}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
             <Button
@@ -56,7 +57,7 @@ export function HeroSection() {
               size="lg"
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 bg-transparent"
             >
-              Learn More
+              {t("cta.learnMore")}
             </Button>
           </div>
         </div>

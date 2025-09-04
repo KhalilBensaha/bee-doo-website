@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 import { ShoppingCart, Star } from "lucide-react"
+import { useI18n } from "@/components/i18n-provider"
 
 export function ProductsSection() {
   const [isVisible, setIsVisible] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  const { t } = useI18n()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,38 +33,38 @@ export function ProductsSection() {
   const products = [
     {
       id: 1,
-      name: "Natural Antibiotic Honey",
-      description: "Premium natural honey with antibiotic properties, perfect for health and wellness.",
+      name: t("products.items.1.name"),
+      description: t("products.items.1.description"),
       price: "$24.99",
       image: "/images/honey-jar.png",
-      badge: "Best Seller",
+      badge: t("products.badges.bestSeller"),
       rating: 5,
     },
     {
       id: 2,
-      name: "Raw Wildflower Honey",
-      description: "Unprocessed honey from wildflowers, rich in natural enzymes and nutrients.",
+      name: t("products.items.2.name"),
+      description: t("products.items.2.description"),
       price: "$19.99",
       image: "/wildflower-honey-jar.png",
-      badge: "New",
+      badge: t("products.badges.new"),
       rating: 5,
     },
     {
       id: 3,
-      name: "Organic Acacia Honey",
-      description: "Light, delicate honey with a mild flavor, perfect for tea and baking.",
+      name: t("products.items.3.name"),
+      description: t("products.items.3.description"),
       price: "$22.99",
       image: "/acacia-honey-jar.png",
-      badge: "Organic",
+      badge: t("products.badges.organic"),
       rating: 4,
     },
     {
       id: 4,
-      name: "Manuka Honey Premium",
-      description: "Rare Manuka honey with exceptional health benefits and unique taste.",
+      name: t("products.items.4.name"),
+      description: t("products.items.4.description"),
       price: "$49.99",
       image: "/manuka-honey-jar.png",
-      badge: "Premium",
+      badge: t("products.badges.premium"),
       rating: 5,
     },
   ]
@@ -77,13 +79,8 @@ export function ProductsSection() {
         >
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-              Our Premium Honey Collection
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Discover our carefully curated selection of natural honey varieties, each with its own unique flavor
-              profile and health benefits.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">{t("products.title")}</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">{t("products.description")}</p>
           </div>
 
           {/* Products Grid */}
@@ -133,7 +130,7 @@ export function ProductsSection() {
                         className="bg-primary hover:bg-secondary text-primary-foreground transition-all duration-300 hover:scale-105 group"
                       >
                         <ShoppingCart className="h-4 w-4 mr-2" />
-                        Add to Cart
+                        {t("cta.addToCart")}
                       </Button>
                     </div>
                   </div>
