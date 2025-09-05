@@ -44,8 +44,8 @@ export function ContactSection() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">{t("contact.description")}</p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
+          {/* Full-width Contact Form */}
+          <div className="space-y-12">
             <Card className="bg-card border-border">
               <CardHeader>
                 <CardTitle className="text-card-foreground">{t("contact.form.title")}</CardTitle>
@@ -91,77 +91,31 @@ export function ContactSection() {
                 </Button>
               </CardContent>
             </Card>
-
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <Card className="bg-card border-border">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Mail className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-card-foreground">{t("contact.info.emailUs")}</h3>
-                      <p className="text-muted-foreground">hello@beedoo.com</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card border-border">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <Phone className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-card-foreground">{t("contact.info.callUs")}</h3>
-                      <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-card border-border">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <MapPin className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-card-foreground">{t("contact.info.visitUs")}</h3>
-                      <p className="text-muted-foreground">123 Honey Lane, Sweet Valley, CA 90210</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Social Media */}
-              <div className="text-center">
-                <h3 className="font-semibold text-foreground mb-4">{t("contact.info.followUs")}</h3>
-                <div className="flex justify-center space-x-4">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 bg-transparent"
-                  >
-                    <Facebook className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 bg-transparent"
-                  >
-                    <Instagram className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 bg-transparent"
-                  >
-                    <Twitter className="h-4 w-4" />
-                  </Button>
-                </div>
+            {/* Social Media */}
+            <div className="text-center">
+              <h3 className="font-semibold text-foreground mb-4">{t("contact.info.followUs")}</h3>
+              <div className="flex justify-center space-x-4">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 bg-transparent"
+                >
+                  <Facebook className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 bg-transparent"
+                >
+                  <Instagram className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 bg-transparent"
+                >
+                  <Twitter className="h-4 w-4" />
+                </Button>
               </div>
             </div>
           </div>
