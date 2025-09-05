@@ -4,6 +4,7 @@ import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { I18nProvider } from "@/components/i18n-provider"
+import { ErrorBoundary } from "@/components/error-boundary"
 
 export const metadata: Metadata = {
   title: 'v0 App',
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <I18nProvider>
-          {children}
-        </I18nProvider>
+        <ErrorBoundary>
+          <I18nProvider>
+            {children}
+          </I18nProvider>
+        </ErrorBoundary>
         <Analytics />
       </body>
     </html>

@@ -264,14 +264,25 @@ function getByPath(obj: any, path: string): any {
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => {
-    if (typeof window === "undefined") return "en"
-    const saved = (localStorage.getItem("locale") as Locale | null) || null
-    if (saved && ["en", "fr", "ar"].includes(saved)) return saved
-    const nav = navigator.language?.slice(0, 2)
-    if (nav === "fr" || nav === "ar") return nav
-    return "en"
-  })
+  // Always start with "en" to prevent hydration mismatch
+  const [locale, setLocaleState] = useState<Locale>("en")
+  const [isInitialized, setIsInitialized] = useState(false)
+
+  // Initialize locale from localStorage after component mounts
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = (localStorage.getItem("locale") as Locale | null) || null
+      if (saved && ["en", "fr", "ar"].includes(saved)) {
+        setLocaleState(saved)
+      } else {
+        const nav = navigator.language?.slice(0, 2)
+        if (nav === "fr" || nav === "ar") {
+          setLocaleState(nav)
+        }
+      }
+      setIsInitialized(true)
+    }
+  }, [])
 
   const setLocale = (l: Locale) => {
     setLocaleState(l)
@@ -281,11 +292,11 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    if (typeof document !== "undefined") {
+    if (typeof document !== "undefined" && isInitialized) {
       document.documentElement.lang = locale
       document.documentElement.dir = locale === "ar" ? "rtl" : "ltr"
     }
-  }, [locale])
+  }, [locale, isInitialized])
 
   const dict = dictionaries[locale]
 
