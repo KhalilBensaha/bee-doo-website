@@ -264,14 +264,8 @@ function getByPath(obj: any, path: string): any {
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => {
-    if (typeof window === "undefined") return "en"
-    const saved = (localStorage.getItem("locale") as Locale | null) || null
-    if (saved && ["en", "fr", "ar"].includes(saved)) return saved
-    const nav = navigator.language?.slice(0, 2)
-    if (nav === "fr" || nav === "ar") return nav
-    return "en"
-  })
+  // Initialize to 'en' to match SSR output; update after mount to avoid hydration mismatch
+  const [locale, setLocaleState] = useState<Locale>("en")
 
   const setLocale = (l: Locale) => {
     setLocaleState(l)
@@ -279,6 +273,19 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem("locale", l)
     }
   }
+
+  useEffect(() => {
+    // On mount, pick saved or navigator locale
+    try {
+      const saved = (localStorage.getItem("locale") as Locale | null) || null
+      if (saved && ["en", "fr", "ar"].includes(saved)) {
+        setLocaleState(saved)
+      } else {
+        const nav = navigator.language?.slice(0, 2)
+        if (nav === "fr" || nav === "ar") setLocaleState(nav)
+      }
+    } catch {}
+  }, [])
 
   useEffect(() => {
     if (typeof document !== "undefined") {
