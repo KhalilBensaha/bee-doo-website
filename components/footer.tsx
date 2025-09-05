@@ -86,8 +86,8 @@ export function Footer() {
         </div>
         {/* Full-width horizontal contact info row */}
         <div className="border-t border-background/20 mt-8 pt-6">
-          <div className="grid grid-cols-3 gap-6 items-start">
-            <div className="flex items-center gap-3 shrink-0">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-start">
+            <div className="flex items-center gap-3">
               <div className="w-9 h-9 bg-background/10 rounded-full flex items-center justify-center">
                 <Mail className="h-4 w-4" />
               </div>
@@ -96,7 +96,7 @@ export function Footer() {
                 <div className="text-background/80 text-sm">hello@beedoo.com</div>
               </div>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-3">
               <div className="w-9 h-9 bg-background/10 rounded-full flex items-center justify-center">
                 <Phone className="h-4 w-4" />
               </div>
@@ -105,7 +105,7 @@ export function Footer() {
                 <div className="text-background/80 text-sm">+1 (555) 123-4567</div>
               </div>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-3">
               <div className="w-9 h-9 bg-background/10 rounded-full flex items-center justify-center">
                 <MapPin className="h-4 w-4" />
               </div>

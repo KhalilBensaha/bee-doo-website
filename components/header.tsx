@@ -2,9 +2,15 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Globe } from "lucide-react"
 import Image from "next/image"
 import { useI18n } from "@/components/i18n-provider"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -21,8 +27,8 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background border-b border-border md:border-none ${
+        isScrolled ? "md:bg-background/95 md:backdrop-blur-sm md:shadow-sm" : "md:bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 py-4">
@@ -67,10 +73,27 @@ export function Header() {
             </select>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button className="md:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Controls: Language + Menu */}
+          <div className="md:hidden flex items-center gap-2">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  aria-label="Change language"
+                  className="p-2 rounded-md border border-border bg-background text-foreground"
+                >
+                  <Globe size={18} />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" sideOffset={8} className="min-w-[8rem]">
+                <DropdownMenuItem onClick={() => setLocale("en" as any)}>English</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setLocale("fr" as any)}>Français</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setLocale("ar" as any)}>العربية</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <button className="p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
